@@ -1,0 +1,62 @@
+# 対決！！HAL麻雀
+
+Windows向け麻雀対戦ゲーム。
+
+## 概要
+
+複数の対戦相手とステージを進めていく麻雀ゲーム。タイトル画面、対戦、コンティニュー、エンディングの流れでゲームが進行する。全11ステージ (Stage00〜Stage10) を勝ち抜いてクリアを目指す。
+
+## 起動方法
+
+haljan.exeを起動する。
+Windows11などでは画面が正常に表示されない問題が起きる。
+その場合は起動後にF4を押すことでWindow表示に切り替わり遊ぶことが可能。
+
+## 対戦相手キャラクター
+
+荒井、原秀、今西、石田、加藤、木曽、中川、酒井 など
+
+## 技術仕様
+
+- **言語:** C++
+- **開発環境:** Microsoft Visual C++ 6.0 (Visual Studio 97/6.0)
+- **ゲームライブラリ:** MGL (MGLDraw, MGLInput, MGLSound, MGLSprite, MGLMidi 等)
+- **画面解像度:** 320x240
+- **サウンド:** MIDI (BGM) / WAV (効果音)
+- **プラットフォーム:** Windows (Win32 API)
+
+## ディレクトリ構成
+
+```
+haljan/
+├── source/          # C++ソースコード・ヘッダファイル
+├── Bgm/             # BGM (MIDIファイル)
+├── Sound/           # 効果音 (WAVファイル) およびキャラクターボイスデータ
+├── CharaData/       # キャラクターデータ (.halファイル)
+├── ScreenShot/      # スクリーンショット保存先 (F12キーで撮影)
+├── haljan.dsp       # VC++6.0 プロジェクトファイル
+├── haljan.dsw       # VC++6.0 ワークスペースファイル
+└── haljan.exe       # 実行ファイル
+```
+
+## 主要ソースファイル
+
+| ファイル | 内容 |
+|---------|------|
+| `Main.cpp/h` | エントリーポイント、ゲームループ |
+| `haljan.cpp/h` | ゲーム全体の管理 (CGameParam) |
+| `CStage.cpp/h` | ステージ基底クラス |
+| `CBattle.cpp/h` | 麻雀対戦ロジック (牌管理、あがり判定、AI等) |
+| `CTitle.cpp/h` | タイトル画面 |
+| `CContinue.cpp/h` | コンティニュー画面 |
+| `CEnding.cpp/h` | エンディング画面 |
+| `CStage00〜10.cpp/h` | 各ステージ固有の処理 |
+| `Define.h` | 共通定数定義 |
+
+## ビルド
+
+Visual C++ 6.0 で `haljan.dsw` を開いてビルドする。
+
+```
+nmake /f "haljan.mak" CFG="haljan - Win32 Release"
+```
